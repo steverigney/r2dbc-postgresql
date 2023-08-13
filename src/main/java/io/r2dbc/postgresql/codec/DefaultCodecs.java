@@ -264,6 +264,7 @@ public final class DefaultCodecs implements Codecs, CodecRegistry {
             new UrlCodec(byteBufAllocator),
             new UuidCodec(byteBufAllocator),
             new YearCodec(byteBufAllocator),
+            new YearMonthCodec(byteBufAllocator),
             new ZoneIdCodec(byteBufAllocator),
 
             // JSON
