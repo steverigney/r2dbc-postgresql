@@ -253,14 +253,15 @@ public final class DefaultCodecs implements Codecs, CodecRegistry {
             new LocalDateTimeCodec(byteBufAllocator, configuration::getZoneId),
             new LocalTimeCodec(byteBufAllocator),
             new LongCodec(byteBufAllocator),
+            new MonthCodec(byteBufAllocator),
             new OffsetDateTimeCodec(byteBufAllocator),
             new OffsetTimeCodec(byteBufAllocator),
             new ShortCodec(byteBufAllocator),
             new UriCodec(byteBufAllocator),
             new UrlCodec(byteBufAllocator),
             new UuidCodec(byteBufAllocator),
-            new ZoneIdCodec(byteBufAllocator),
             new YearCodec(byteBufAllocator),
+            new ZoneIdCodec(byteBufAllocator),
 
             // JSON
             new JsonCodec(byteBufAllocator, preferAttachedBuffers),
