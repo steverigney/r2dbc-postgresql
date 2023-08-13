@@ -244,6 +244,7 @@ public final class DefaultCodecs implements Codecs, CodecRegistry {
             new BigIntegerCodec(byteBufAllocator),
             new BooleanCodec(byteBufAllocator),
             new CharacterCodec(byteBufAllocator),
+            new DayOfWeekCodec(byteBufAllocator),
             new DoubleCodec(byteBufAllocator),
             new FloatCodec(byteBufAllocator),
             new InetAddressCodec(byteBufAllocator),
