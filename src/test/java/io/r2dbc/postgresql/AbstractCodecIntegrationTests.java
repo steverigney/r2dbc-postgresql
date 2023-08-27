@@ -58,16 +58,9 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.OffsetDateTime;
-import java.time.OffsetTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.ValueRange;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -75,6 +68,8 @@ import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static io.r2dbc.postgresql.util.TestByteBufAllocator.TEST;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -576,6 +571,31 @@ abstract class AbstractCodecIntegrationTests extends AbstractIntegrationTests {
     @Test
     void uuid() {
         testCodec(UUID.class, UUID.randomUUID(), "UUID");
+    }
+
+    @Test
+    void year() {
+        testCodec(Year.class, Year.now(), "INT4");
+    }
+
+    @Test
+    void month() {
+        IntStream.rangeClosed(1, 12).forEach(month -> testCodec(Month.class, Month.of(month), "INT4"));
+    }
+
+    @Test
+    void dayOfWeek() {
+        IntStream.rangeClosed(1, 7).forEach(month -> testCodec(DayOfWeek.class, DayOfWeek.of(month), "INT4"));
+    }
+
+    @Test
+    void monthDay() {
+        testCodec(MonthDay.class, MonthDay.now(), "VARCHAR");
+    }
+
+    @Test
+    void yearMonth() {
+        testCodec(YearMonth.class, YearMonth.now(), "VARCHAR");
     }
 
     @Test
